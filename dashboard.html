@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Pool Control Center</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#e9f4f7;
+text-align:center;
+}
+
+.card{
+background:white;
+padding:30px;
+margin:20px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.value{
+font-size:40px;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🏊 Pool Control Center</h1>
+
+<div class="card">
+Temperatur
+<div id="temp" class="value">--</div>
+</div>
+
+<div class="card">
+pH
+<div id="ph" class="value">--</div>
+</div>
+
+<div class="card">
+ORP
+<div id="orp" class="value">--</div>
+</div>
+
+<div class="card">
+Pumpe
+<div id="pump" class="value">--</div>
+</div>
+
+<script>
+
+async function load(){
+
+const res = await fetch("/api/pool");
+
+const data = await res.json();
+
+document.getElementById("temp").innerHTML = data.temp+" °C";
+document.getElementById("ph").innerHTML = data.ph;
+document.getElementById("orp").innerHTML = data.orp+" mV";
+
+document.getElementById("pump").innerHTML =
+data.pump ? "AN" : "AUS";
+
+}
+
+load();
+
+setInterval(load,10000);
+
+</script>
+
+</body>
+</html>
