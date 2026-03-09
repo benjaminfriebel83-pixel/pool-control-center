@@ -1,0 +1,13 @@
+{
+  "name": "pool-control-center",
+  "version": "1.0.0",
+  "description": "Pool Monitoring Dashboard",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.7",
+    "express": "^4.18.2"
+  }
+}
